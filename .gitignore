@@ -1,0 +1,6 @@
+vendor/
+node_modules/
+.env
+.phpunit.result.cache
+haminshop-b2b-suite/vendor/
+haminshop-b2b-suite/node_modules/
