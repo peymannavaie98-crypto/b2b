@@ -60,6 +60,12 @@ class Plugin {
         (new \HaminShop\B2BSuite\Modules\Logistics\WarehouseModule())->init();
         (new \HaminShop\B2BSuite\Modules\O2O\O2OModule())->init();
         (new \HaminShop\B2BSuite\Modules\Marketing\RestockModule())->init();
+        (new \HaminShop\B2BSuite\Modules\Finance\CashbackModule())->init();
+        (new \HaminShop\B2BSuite\Modules\Compliance\SamaneModyanModule())->init();
+
+        // Initialize UI Integration
+        (new \HaminShop\B2BSuite\Admin\AdminMenu())->init();
+        (new \HaminShop\B2BSuite\Frontend\FrontendManager())->init();
 
         $this->eventDispatcher->dispatch('plugin_initialized', []);
     }
