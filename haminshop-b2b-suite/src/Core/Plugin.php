@@ -50,6 +50,12 @@ class Plugin {
             (new \HaminShop\B2BSuite\HTTP\REST\V1\QuoteController())->register_routes();
         });
 
+        // Initialize Modules
+        (new \HaminShop\B2BSuite\Modules\Customer\OnboardingModule())->init();
+        (new \HaminShop\B2BSuite\Modules\PricingEngine\PricingModule())->init();
+        (new \HaminShop\B2BSuite\Modules\Order\QuoteModule())->init();
+        (new \HaminShop\B2BSuite\Modules\Payment\PaymentModule())->init();
+
         $this->eventDispatcher->dispatch('plugin_initialized', []);
     }
 

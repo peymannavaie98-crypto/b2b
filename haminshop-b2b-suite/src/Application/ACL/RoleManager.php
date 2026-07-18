@@ -8,7 +8,7 @@ class RoleManager {
         // 1. Pending B2B Customer
         add_role('b2b_pending', 'همکار در انتظار', [
             'read' => true,
-            'upload_files' => true, // Needed for document uploads
+            'upload_b2b_documents' => true, // Secure custom cap instead of wide upload_files
         ]);
 
         // 2. Verified B2B Customer

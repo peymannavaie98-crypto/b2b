@@ -28,7 +28,22 @@ class QuoteController extends WP_REST_Controller {
     }
 
     public function create_quote($request) {
-        // Delegate to CreateQuoteUseCase
-        return rest_ensure_response(['success' => true, 'quote_id' => 123]);
+        $params = $request->get_json_params();
+        if (empty($params['items'])) {
+            return new \WP_Error('invalid_data', 'موارد پیش‌فاکتور نمی‌تواند خالی باشد.', ['status' => 400]);
+        }
+
+        try {
+            $useCase = new \HaminShop\B2BSuite\Application\Quote\CreateQuoteUseCase();
+            $quoteId = $useCase->execute($params);
+
+            return rest_ensure_response([
+                'success' => true,
+                'quote_id' => $quoteId,
+                'message' => 'پیش‌فاکتور با موفقیت ایجاد شد و موجودی/قیمت برای ۴۸ ساعت قفل گردید.'
+            ]);
+        } catch (\Exception $e) {
+            return new \WP_Error('quote_creation_failed', $e->getMessage(), ['status' => 500]);
+        }
     }
 }
