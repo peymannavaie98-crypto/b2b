@@ -48,6 +48,8 @@ class Plugin {
         add_action('rest_api_init', function () {
             (new \HaminShop\B2BSuite\HTTP\REST\V1\CustomerController())->register_routes();
             (new \HaminShop\B2BSuite\HTTP\REST\V1\QuoteController())->register_routes();
+            (new \HaminShop\B2BSuite\HTTP\REST\V1\PaymentController())->register_routes();
+            (new \HaminShop\B2BSuite\HTTP\REST\V1\RMAController())->register_routes();
         });
 
         // Initialize Modules
@@ -55,6 +57,9 @@ class Plugin {
         (new \HaminShop\B2BSuite\Modules\PricingEngine\PricingModule())->init();
         (new \HaminShop\B2BSuite\Modules\Order\QuoteModule())->init();
         (new \HaminShop\B2BSuite\Modules\Payment\PaymentModule())->init();
+        (new \HaminShop\B2BSuite\Modules\Logistics\WarehouseModule())->init();
+        (new \HaminShop\B2BSuite\Modules\O2O\O2OModule())->init();
+        (new \HaminShop\B2BSuite\Modules\Marketing\RestockModule())->init();
 
         $this->eventDispatcher->dispatch('plugin_initialized', []);
     }

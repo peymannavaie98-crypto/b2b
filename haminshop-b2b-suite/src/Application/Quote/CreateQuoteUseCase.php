@@ -24,7 +24,13 @@ class CreateQuoteUseCase {
             if (!$product) {
                 throw new \Exception(sprintf('محصول با شناسه %d یافت نشد.', $item['product_id']));
             }
-            $order->add_product($product, $item['quantity']);
+
+            $quantity = (int) $item['quantity'];
+            if ($quantity <= 0) {
+                throw new \Exception('تعداد سفارش باید بزرگتر از صفر باشد.');
+            }
+
+            $order->add_product($product, $quantity);
         }
 
         // 3. Set Logistics / Shipping
